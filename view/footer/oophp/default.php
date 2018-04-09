@@ -11,5 +11,4 @@ namespace Anax\View;
 
 ?>
 
-FOOTER <?= __FILE__ ?>
-<?= showEnvironment(get_defined_vars(), get_defined_functions()) ?>
+<?= showEnvironment(get_defined_vars(), get_defined_functions());

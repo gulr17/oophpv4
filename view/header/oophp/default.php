@@ -12,5 +12,3 @@ namespace Anax\View;
 ?>
 
 <img class="header-logo" src="<?= asset("img/blad.jpg") ?>" alt="Logo">
-
-HEADER <?= __FILE__ ?>
