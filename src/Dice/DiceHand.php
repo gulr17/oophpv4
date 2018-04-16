@@ -1,0 +1,99 @@
+<?php
+namespace Gula\Dice;
+
+/**
+ * Short description for file
+ *
+ * PHP version 7
+ *
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category  Test
+ * @package   Test
+ * @author    Gustav Larsson <gustav.b.larsson@gmail.com>
+ * @copyright 2018 Gustav Larsson
+ * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @link      http://gula.pw
+ */
+
+/**
+ * A dicehand, consisting of dices.
+ *
+ * @category Test
+ * @package  Test
+ * @author   Gustav Larsson <gustav.b.larsson@gmail.com>
+ * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @link     http://gula.pw
+ */
+class DiceHand
+{
+    /**
+     * Variables used in class
+     *
+     * @var Dice $dices   Array consisting of dices.
+     * @var int  $values  Array consisting of last roll of the dices.
+     */
+    private $dices;
+    private $values;
+
+    /**
+     * Constructor to initiate the dicehand with a number of dices.
+     *
+     * @param int $dices Number of dices to create, defaults to five.
+     */
+    public function __construct(int $dices = 2)
+    {
+        $this->_dices  = [];
+        $this->_values = [];
+
+        for ($i = 0; $i < $dices; $i++) {
+            $this->_dices[]  = new Dice();
+        }
+    }
+
+    /**
+     * Roll all dices save their value.
+     *
+     * @return void.
+     */
+    public function roll()
+    {
+        foreach ($this->_dices as $dices) {
+            $this->_values[] = $dices->roll();
+        }
+    }
+
+    /**
+     * Get values of dices from last roll.
+     *
+     * @return array with values of the last roll.
+     */
+    public function values()
+    {
+        return $this->_values;
+    }
+
+    /**
+     * Get the sum of all dices.
+     *
+     * @return int as the sum of all dices.
+     */
+    public function sum()
+    {
+        return array_sum($this->_values);
+    }
+
+    /**
+     * Get the average of all dices.
+     *
+     * @return float as the average of all dices.
+     */
+    public function average()
+    {
+        return array_sum($this->_values)/count($this->_values);
+    }
+}
